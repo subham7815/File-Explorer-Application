@@ -1,49 +1,38 @@
-# Makefile for File Explorer Application
-
-# Compiler
+# Compiler and flags
 CXX = g++
-
-# Compiler flags
-CXXFLAGS = -Wall -Wextra -std=c++11 -O2
+CXXFLAGS = -Wall -Wextra -std=c++17 -O2
 
 # Target executable
 TARGET = file_explorer
 
-# Source files
-SOURCES = file_explorer.cpp
+# Source file
+SRC = file_explorer.cpp
 
-# Object files
-OBJECTS = $(SOURCES:.cpp=.o)
-
-# Default target
 all: $(TARGET)
 
-# Build the executable
-$(TARGET): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS)
-	@echo "Build successful! Run with: ./$(TARGET)"
+$(TARGET): $(SRC)
+	@echo "Compiling the File Explorer program..."
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
+	@echo "Build complete. Run './$(TARGET)' to start the program."
 
-# Compile source files
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-# Clean build artifacts
-clean:
-	rm -f $(OBJECTS) $(TARGET)
-	@echo "Cleaned build artifacts"
-
-# Run the application
-run: $(TARGET)
+run: all
+	@echo "Running File Explorer..."
 	./$(TARGET)
 
-# Install (optional - copies to /usr/local/bin)
 install: $(TARGET)
+	@echo "Installing File Explorer to /usr/local/bin..."
 	sudo cp $(TARGET) /usr/local/bin/
-	@echo "Installed to /usr/local/bin/$(TARGET)"
+	@echo "Installation complete. You can now run it using 'file_explorer'."
 
-# Uninstall
 uninstall:
+	@echo "Removing File Explorer from /usr/local/bin..."
 	sudo rm -f /usr/local/bin/$(TARGET)
-	@echo "Uninstalled from /usr/local/bin/"
+	@echo "Uninstallation complete."
 
-.PHONY: all clean run install uninstall
+clean:
+	@echo "Cleaning up build files..."
+	rm -f $(TARGET)
+	@echo "Clean complete."
+
+
+.PHONY: all run install uninstall clean
