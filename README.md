@@ -8,7 +8,7 @@ This project provides a complete file management system that supports navigation
 
 **Project Type:** Capstone Project  
 **Language Used:** C++  
-**Operating System:** Linux (Ubuntu, Debian, Fedora, or WSL)
+**Operating System:** Linux 
 **Development Time:** 5 Days  
 ---
 ## Features Overview
